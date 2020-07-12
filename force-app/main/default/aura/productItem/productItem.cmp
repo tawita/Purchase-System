@@ -1,0 +1,48 @@
+<aura:component>
+<aura:attribute name="Product" type="Product__c" />
+<aura:attribute name="newProduct" type="Object" />
+<aura:attribute name="selected" type="Boolean" />
+<aura:attribute name="getClear" type="Boolean" />
+<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+<aura:registerEvent name="getTotalQt" type="c:getTotalQt"/> 
+                    <!-- <ui:outputRichText  value="{!v.Product.Picture__c}" /> -->
+                    <lightning:button class="{!v.selected ? 'tile selected' : 'tile'}"  onclick="{!c.cart}" >
+                    <!-- <lightning:layoutItem class="tile"> -->
+                    <ui:outputRichText  value="{!v.Product.Picture__c}" />
+                    
+
+                    <div>
+                    <span class="label">Type: </span>
+                    <span>{!v.Product.Name}</span>
+                    </div>
+
+                    <div>
+                    <span class="label">Code: </span>
+                    <span>{!v.Product.Id__c}</span>
+                    </div>
+
+                    <div>
+                    <span class="label">Price: </span>
+                    <lightning:formattedNumber value="{!v.Product.Price__c}" style="currency" currencyCode="THB"/>
+                    </div>
+
+                    <div>
+                    <span class="label">Quantity: </span>
+                    <span>{!v.Product.Quantity__c}</span>
+                    <aura:if isTrue="{!(v.Product.Quantity__c==1)}">
+                        <span > cat</span>
+                    
+                    <aura:set attribute="else">
+                        <span > cats</span>
+                    </aura:set>
+                </aura:if>
+                    </div>
+                    
+                </lightning:button>
+                    <!-- <aura:if isTrue="{!v.Product.Select__c}"> -->
+                    <!-- <lightning:layout horizontalAlign="center">
+                            <lightning:buttonIconStateful  iconName="utility:cart" variant="brand" alternativeText="Cart" aura:id="Cart" title="Cart" onclick="{!c.cart}"/>
+                    </lightning:layout> -->
+                <!-- </aura:if> -->
+            <!-- </lightning:layoutItem> -->
+</aura:component>	

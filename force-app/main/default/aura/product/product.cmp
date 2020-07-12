@@ -1,0 +1,25 @@
+<aura:component controller="dataProduct" implements="force:appHostable,force:lightningQuickActionWithoutHeader,flexipage:availableForAllPageTypes" access="global">
+<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+<aura:attribute name="Products" type="Product__c[]" />
+<aura:attribute name="selected" type="Boolean" />
+
+<lightning:card title="Product" >
+<lightning:layout multipleRows="true">
+        <aura:iteration items="{!v.Products}" var="Product"  aura:id="product" start="0" end="8">
+                <!-- <aura:if isTrue="{!int &lt; 5}"> -->
+            <lightning:layoutItem  size="3" flexibility="grow" class="tile" padding="around-small">
+                    <c:productItem Product ="{!Product}" selected="{!v.selected}"/>
+            </lightning:layoutItem>
+            <!-- </aura:if> -->
+        </aura:iteration>
+</lightning:layout>
+<footer class="slds-modal__footer">
+<div class="center-align">
+<lightning:buttonGroup>
+        <lightning:buttonIcon iconName="utility:back" variant="brand" aura:id="back" disabled="true" onclick="{! c.back }" alternativeText="back" title="back" />
+        <lightning:buttonIcon iconName="utility:forward" variant="brand" aura:id="forward" disabled="false" onclick="{! c.forward }" alternativeText="forward" title="forward" />
+    </lightning:buttonGroup>
+</div>
+</footer>
+</lightning:card>
+</aura:component>	

@@ -1,0 +1,45 @@
+<aura:component>
+    <aura:attribute name="Product" type="Object" />
+    <!-- <aura:attribute name="number" type="Integer" /> -->
+    <!-- <aura:attribute name="count" type="List" default="['1','2','3','4','5','6','7','8','9','10']"/> -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <div class="slds-grid slds-wrap">
+       
+        <div class="slds-col slds-size_2-of-12">
+            <ui:outputRichText  value="{!v.Product.Picture__c}" />
+        </div>
+
+        <div class="slds-col slds-size_10-of-12">
+    <div>
+    <span class="labela">{!v.Product.Name}</span>
+    <!-- <span>{!v.Product.Name}</span> -->
+    </div>
+
+    <div>
+    <span class="label">Amount: </span>
+    <span>{!v.Product.orderQt}</span>
+    <aura:if isTrue="{!(v.Product.orderQt==1)}">
+                        <span > item</span>
+                    
+                    <aura:set attribute="else">
+                        <span > items</span>
+                    </aura:set>
+                </aura:if>
+    <!-- <lightning:formattedNumber value="{!v.Product.orderQt}" /> -->
+    </div>
+
+    <lightning:layoutItem >
+        <span class="label">Total: </span>
+        <lightning:formattedNumber value="{!v.Product.Price__c}" style="currency" currencyCode="THB"/>
+        <span> x {!v.Product.orderQt} = </span>
+        <!-- <span> = </span> -->
+        <lightning:formattedNumber aura:id="Total" value="{!v.Product.Total__c}" style="currency" currencyCode="THB"/>
+        <!-- <ui:outputText aura:id="Total" value="{!v.Product.Total__c}" /> -->
+    </lightning:layoutItem>
+    </div>
+    
+</div>
+
+    
+</aura:component>	

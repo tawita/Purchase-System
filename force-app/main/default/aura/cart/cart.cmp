@@ -1,0 +1,12 @@
+<aura:component>
+    <aura:attribute name="Products" type="Object[]" />
+    
+    
+    <aura:iteration items="{!v.Products}" var="Products" >
+            <lightning:layoutItem  class="tile" padding="around-small">
+                    <c:cartItem Product ="{!Products}"  />
+            </lightning:layoutItem>
+    </aura:iteration>
+
+   
+</aura:component>	

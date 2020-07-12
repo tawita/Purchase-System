@@ -1,0 +1,41 @@
+<aura:component access="global">
+    <aura:attribute name="Customer" type="Customer__c" />
+    <aura:attribute name="Products" type="Object[]" />
+    <aura:attribute name="newCustomer" type="Customer__c"/>
+    <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> -->
+
+    <lightning:layoutItem padding="around-small">
+    <div>
+        <span class="label">{!v.Customer.FirstName__c} </span>&nbsp;
+        <span class="label">{!v.Customer.LastName__c}</span>
+    </div>
+
+    <div>
+        <span class="label">Phone: </span>
+        <span>{!v.Customer.Phone__c}</span>
+    </div>
+    <div>
+        <span class="label">Email: </span>
+        <span>{!v.Customer.Email__c	}</span>
+    </div>
+
+    <div>
+        <span class="label">Address: </span>
+                <span>{!v.Customer.Address__c}</span>
+            
+    </div>
+    </lightning:layoutItem>
+
+    <!-- <div class="slds-p-bottom_large slds-p-left_large" style="width:500px">
+        <lightning:recordViewForm recordId="{!v.Customer.Id}" objectApiName="Customer__c">
+        <div class="slds-box">
+            <lightning:outputField fieldName="FirstName__c" />
+            <lightning:outputField fieldName="Phone__c" />
+            <lightning:outputField fieldName="Email__c" />
+            <lightning:outputField fieldName="Address__c" />
+        </div>
+    </lightning:recordViewForm>
+    </div> -->
+   
+  
+</aura:component>	

@@ -1,0 +1,11 @@
+.THIS .label {
+    font-weight: bold;
+    /* display: block; */
+}
+.THIS .labela {
+    font-weight: bold;
+    display: block;
+}
+.THIS.right-align {
+    text-align: right;
+}

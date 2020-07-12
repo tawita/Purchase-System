@@ -1,0 +1,70 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="Products" type="Object[]" />
+    <aura:attribute name="Customer" type="Customer__c" />
+    <aura:attribute name="newCustomer" type="Customer__c"/>
+    <aura:attribute name="total" type="Integer"/>
+    <aura:attribute name="amount" type="Integer" default="0"/>
+    <!-- <aura:attribute name="number" type="List" default="['1','2']"/> -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_2-of-3">
+    
+        <lightning:card iconName="standard:avatar" title="Account">
+                <lightning:layoutItem padding="around-small">
+                    <c:checkCustom aura:id="checkCustom" Customer="{!v.Customer}" Products ="{!v.Products}"/>
+                </lightning:layoutItem>
+            <!-- <aura:set attribute="actions">
+                <div class="right-align">
+                    <lightning:button iconName="action:edit" label=" Edit " onclick="{!c.editCustom}" />
+                </div>
+            </aura:set>           -->
+        </lightning:card>
+        
+        <lightning:card iconName="standard:picklist_type" title="Order Confirm">
+            <aura:iteration items="{!v.Products}" var="Product">
+                <lightning:layoutItem padding="around-small">
+                    <c:checkProduct aura:id="checkProduct" Product ="{!Product}" />
+                </lightning:layoutItem>
+                </aura:iteration>
+
+            <aura:set attribute="actions">
+                <div class="right-align">
+                    <lightning:button iconName="action:edit" label=" Edit " onclick="{!c.editProduct}" />
+                </div>
+            </aura:set>   
+    </lightning:card>
+</div>
+
+    <div class="slds-col slds-size_1-of-3">
+    <lightning:card iconName="standard:buyer_account" title="Grand Total">
+
+    <lightning:layoutItem padding="around-small" class="center-align">
+        <div >
+        <span> {!v.amount}</span>
+        <!-- <span class="label"> items</span> -->
+        <aura:if isTrue="{!(v.amount==1)}">
+                        <span > item</span>
+                    
+                    <aura:set attribute="else">
+                        <span > items</span>
+                    </aura:set>
+                </aura:if>
+        </div>
+
+        <div>
+        <span class="label">Grand total: </span>
+        <lightning:formattedNumber aura:id="Total" value="{!v.total}" style="currency" currencyCode="THB"/>
+        </div>
+    </lightning:layoutItem>
+
+    <lightning:layoutItem padding="around-small" class="right-align">
+        <lightning:button label=" Cancel " onclick="{!c.cancel}" />
+        <lightning:button label=" PDF " onclick="{!c.viewPDF}" />
+        <lightning:button variant="brand" label=" Buy " onclick="{!c.buy}" />
+    </lightning:layoutItem>
+
+
+</lightning:card>
+</div>
+</div>
+</aura:component>	

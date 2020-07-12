@@ -1,0 +1,53 @@
+<aura:component>
+    <aura:attribute name="Product" type="Object" />
+    <!-- <aura:attribute name="total" type="Integer" /> -->
+    <aura:registerEvent name="clear" type="c:clear"/> 
+    <aura:registerEvent name="add" type="c:add"/> 
+    <aura:registerEvent name="dash" type="c:dash"/> 
+
+    <ui:outputRichText  value="{!v.Product.Picture__c}" />
+
+    <div>
+    <span class="label">Type: </span>
+    <span>{!v.Product.Name}</span>
+    </div>
+
+    <!-- <div>
+    <span class="label">Code: </span>
+    <span>{!v.Product.Id__c}</span>
+    </div> -->
+
+    <div>
+    <span class="label">Price: </span>
+    <lightning:formattedNumber value="{!v.Product.Price__c}" style="currency" currencyCode="THB"/>
+    </div>
+
+    <div>
+        <span class="label">Description: </span>
+        <lightning:formattedRichText  value="{!v.Product.Description__c}" />
+        <!-- <span>{!v.Product.Description__c}</span> -->
+    </div>
+
+    <!-- <div>
+    <span class="slds-truncate">Quantity: </span>
+    <span>{!v.Product.Quantity__c}</span>
+    </div> -->
+
+    <lightning:layout horizontalAlign="center">
+                        <lightning:buttonGroup >
+                            <lightning:buttonIconStateful  iconName="utility:add" alternativeText="add" aura:id="add" title="add" onclick="{!c.add}"/>
+                            <lightning:button  title="Amount" label="{!v.Product.orderQt}" />
+                            <lightning:buttonIconStateful  iconName="utility:dash" alternativeText="dash" aura:id="dash" title="dash" onclick="{!c.dash}"/>
+                            <lightning:buttonIconStateful  iconName="utility:clear" alternativeText="clear" aura:id="clear" title="clear" onclick="{!c.clear}"/>
+                        </lightning:buttonGroup>
+    </lightning:layout>
+
+    <lightning:layoutItem class="right-align">
+        <span class="labelTotal">Total: </span>
+        <lightning:formattedNumber value="{!v.Product.Price__c}" style="currency" currencyCode="THB"/>
+        <span> x {!v.Product.orderQt} </span>
+        <span> = </span>
+        <lightning:formattedNumber aura:id="Total" value="{!v.Product.Total__c}" style="currency" currencyCode="THB"/>
+        <!-- <ui:outputText aura:id="Total" value="{!v.Product.Total__c}" /> -->
+    </lightning:layoutItem>
+</aura:component>	

@@ -1,0 +1,11 @@
+.THIS.right-align {
+    text-align: right;
+}
+.THIS .label {
+    font-weight: bold;
+    /* display: block; */
+}
+.THIS .labelTotal {
+    font-weight: bold;
+    display: block;
+}

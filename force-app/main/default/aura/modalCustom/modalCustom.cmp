@@ -1,0 +1,91 @@
+<aura:component controller="dataProduct" implements="force:appHostable,force:lightningQuickActionWithoutHeader,flexipage:availableForAllPageTypes" access="global">
+    <!--Boolean attribute to indicate if modal is open or not 
+       default value is false as modal is closed when page is loaded 
+    -->
+    <aura:attribute name="isModalOpen" type="boolean" />
+    <aura:attribute name="Customer" type="Customer__c" default="{sobjectType: 'Customer__c',
+    'FirstName__c':'',
+    'LastName__c':'',
+    'Phone__c':'',
+    'Email__c':'',
+    'Address__c':''
+    }"/>
+    <!-- <aura:attribute name="Customer" type="Customer__c"/> -->
+    <aura:attribute name="total" type="Integer" />
+    <aura:attribute name="newCustomer" type="Customer__c"/>
+    <aura:attribute name="Orderlist" type="Order__c[]" access="global"/>
+    <!-- <aura:attribute name="Customers" type="Customer__c[]" /> -->
+    <aura:attribute name="Products" type="Object[]" access="global"/>
+    <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> -->
+    <aura:registerEvent name="CustomAdded" type="c:CustomAdded"/>
+
+    <!-- <force:recordData aura:id="service" recordId=""
+                      targetFields="{!v.Customer}"
+                      fields="Id,FirstName__c,LastName__c,Phone__c,Email__c,Address__c,Product__c"
+                      targetRecord="{!v.simpleboatReview}"
+                      targetError="{!v.recordError}"
+                      recordUpdated="{!c.onRecordUpdated}"/> -->
+     
+    <div class="slds-m-around_xx-large">
+        
+        <!--Use aura:if tag to display/hide popup based on isModalOpen value-->  
+        <aura:if isTrue="{!v.isModalOpen}">
+             
+            <!-- Modal/Popup Box starts here-->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- Modal/Popup Box Header Starts here-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModel }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Account</h2>
+                    </header>
+                    <!--Modal/Popup Box Body Starts here-->
+                    <div class="slds-modal__content slds-p-around_medium" >
+
+                        <!-- CREATE NEW EXPENSE FORM -->
+        <form class="slds-form--stacked">    
+             
+            <lightning:input label="First name" aura:id="expenseform"
+                             name="firstname" placeholder="First name"
+                             value="{!v.Customer.FirstName__c}"
+                             required="true"/> 
+            <lightning:input label="Last name" aura:id="expenseform"
+                             name="lastsename" placeholder="Last name"
+                             value="{!v.Customer.LastName__c}"
+                             required="true"/>                  
+            <lightning:input type="tel" label="Tel" aura:id="expenseform"
+                             name="phone" value="{!v.Customer.Phone__c}"
+                             required="true"
+                             placeholder="areacode-phone"/>
+            <lightning:input type="email" name="email" aura:id="expenseform"
+                             value="{!v.Customer.Email__c}"
+                             placeholder="youraddress@domain.com" 
+                             label="Email" required="true" />
+            <lightning:textarea label="Address" aura:id="expenseform"
+                            value="{!v.Customer.Address__c}" required="true"
+                            name="address" placeholder="Your address ..." />
+        </form>
+                    </div>
+                    <!--Modal/Popup Box Footer Starts here-->
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral"
+                                          label="Cancel"
+                                          title="Cancel"
+                                          onclick="{! c.closeModel }"/>
+                        <lightning:button variant="brand"
+                                          type="submit"
+                                          label="Submit"
+                                          title="Submit"
+                                          onclick="{!c.onSave}"/>
+                        
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+    </div>
+</aura:component>	

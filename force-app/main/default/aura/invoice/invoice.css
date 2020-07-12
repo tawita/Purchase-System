@@ -1,0 +1,14 @@
+.THIS.tile {
+    position:relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 1px !important;
+}
+.THIS .label {
+    font-weight: bold;
+    /* display: block; */
+}
+.THIS .center-align {
+    text-align: center;
+}

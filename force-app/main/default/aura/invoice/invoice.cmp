@@ -1,0 +1,100 @@
+<aura:component controller="dataProduct" implements="force:appHostable,force:lightningQuickActionWithoutHeader,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome" access="global">
+    <!-- <aura:attribute name="Products" type="Product__c[]" /> -->
+    <aura:attribute name="Products" type="Object[]" />
+    <aura:attribute name="Customer" type="Customer__c" />
+    <aura:attribute name="selected" default="true" type="Boolean" />
+    <!-- <aura:attribute name="count" type="Integer" default="0"/> -->
+    <aura:attribute name="selecttab" type="boolean" default="true"/>
+    <aura:handler name="getTotalQt" event="c:getTotalQt" action="{!c.getTotalQt}"/>
+    <aura:handler name="clear" event="c:clear" action="{!c.clear}"/>
+    <aura:handler name="add" event="c:add" action="{!c.add}"/>
+    <aura:handler name="dash" event="c:dash" action="{!c.dash}"/>
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="total" type="Integer" default="0"/>
+    <aura:handler event="c:CustomAdded" name="CustomAdded" action="{!c.CustomAdded}" phase="capture"/>
+    <aura:attribute name="newCustomer" type="Customer__c"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <c:modalCustom isModalOpen="{!v.isModalOpen}" Products="{!v.Products}" total="{!v.total}" />
+
+    <!-- <force:recordData aura:id="service" recordId="{!v.id}"
+    targetFields ="{!v.Custom}"
+    fields="Id,FirstName__c,LastName__c,Phone__c,Email__c,Address__c,Product__c"
+    recordUpdated="{!c.onRecordUpdated}"/> -->
+    <!-- <span>{!v.selecttab}</span> -->
+    <!-- <span>{!v.Custom.FirstName__c}</span> -->
+        <div class="slds-col" >
+    <lightning:card >
+                <div class="center-align">
+                    <img style="height:200px;width:1300px;" src="{!$Resource.header}"/>
+                </div>
+    </lightning:card>
+</div>
+
+<div class="slds-grid slds-gutters">
+
+        <!-- <aura:if isTrue="{! (v.Products.length == 0)}"> -->
+
+            <!-- <div class="slds-col slds-size_4-of-4" > -->
+                
+                    <!-- <c:product selected="{!v.selected}"/> -->
+                
+            <!-- </div> -->
+
+            <!-- <aura:set attribute="else"> -->
+                <div class="slds-col slds-size_3-of-4">
+                        <c:product selected="{!v.selected}" />
+                </div>
+            <!-- </aura:set> -->
+
+        <!-- </aura:if> -->
+
+    <aura:if isTrue="{! (v.Products.length > 0)}">
+        <div class="slds-col slds-size_1-of-4">
+            <lightning:card title="Cart" >
+
+                <lightning:layoutItem padding="around-small">
+                    <c:cart aura:id="Cart" Products ="{!v.Products}" />
+                </lightning:layoutItem>
+
+                <footer class="slds-modal__footer">
+                <lightning:layout horizontalAlign="center">
+                    <lightning:layoutItem padding="around-small">
+                        <span class="label">Grand total: </span>
+                        <lightning:formattedNumber aura:id="Total" value="{!v.total}" style="currency" currencyCode="THB"/>
+                    </lightning:layoutItem>
+        
+                    <lightning:layoutItem padding="around-small">
+                        <ui:button aura:id="Confirm" class="button" label="Confirm" press="{!c.doConfirm}"/>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </footer>
+            </lightning:card> 
+        </div>
+
+        <aura:set attribute="else">
+            <div class="slds-col slds-size_1-of-4">
+                <lightning:card title="Cart" >
+            <lightning:layout horizontalAlign="center">
+            <lightning:layoutItem padding="around-small">
+                <h1>Please select product.</h1>
+            </lightning:layoutItem>
+            </lightning:layout>
+        </lightning:card>
+    </div>
+        </aura:set>
+        
+    </aura:if>
+
+
+    <!-- <aura:set attribute="else">
+        <div class="slds-col">
+            <lightning:card title="Order Confirm">
+                <c:checkout Products="{!v.Products}" total="{!v.total}" Custom="{!v.Custom}"/>
+            </lightning:card>
+        </div>
+        </aura:set> -->
+    <!-- </aura:if> -->
+
+</div>          
+</aura:component>	

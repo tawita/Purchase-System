@@ -1,0 +1,12 @@
+
+
+.THIS.tile {
+    position:relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 1px !important;
+}
+.THIS .center-align {
+    text-align: center;
+}
