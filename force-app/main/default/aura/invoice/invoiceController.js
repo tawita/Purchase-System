@@ -47,6 +47,7 @@
 
     doConfirm: function(component, event, helper) {
         // var data = component.get("v.Products"); 
+        // console.log("data: "  +JSON.stringify(data));
         // var data=event.getParam('boat');
         // component.set("v.id", data[0].Id);
         // console.log("data received in boatdetails"+JSON.stringify(data));

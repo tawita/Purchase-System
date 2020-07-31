@@ -2,7 +2,7 @@ public with sharing class dataProduct {
     @AuraEnabled
     public static list<Product__c> product {get;set;}
     public static list<OrderItem> orderItem {get;set;}
-    // public static User User {get;set;}
+    public static User User {get;set;}
 
     @AuraEnabled
     public static List<Product__c> getProduct() {  
@@ -11,14 +11,10 @@ public with sharing class dataProduct {
         return product;
     }
 
-    @AuraEnabled
-    public static void updateOrder(Order order) {  
-        // order.ContractId = 
-        order.Status = 'Activated'; 
-        System.debug(order);
-        update order;
-        // System.debug(order);
-    }
+    // @AuraEnabled
+    // public static void updateOrder(Order order) {  
+        
+    // }
 
     // @AuraEnabled
     // public static User getUser(Order order) {  
@@ -47,7 +43,7 @@ public with sharing class dataProduct {
         System.debug(products);
         System.debug(total);
         List<OrderItem> orderItems = new List<OrderItem>{} ;
-        
+
         Order order = new Order(
             Customer__c = user.Id,
             Name = 'MyNewTestOrder',
@@ -58,8 +54,8 @@ public with sharing class dataProduct {
             EffectiveDate = Date.today(),
             Status = 'Draft' );
         insert order;
-        // System.debug(order);
-        // System.debug(order.Customer__c);
+        System.debug(order);
+        System.debug(order.Customer__c);
 
         for(Map<String, Object> p : products){
             OrderItem orderItem = new OrderItem();
@@ -72,7 +68,7 @@ public with sharing class dataProduct {
             orderItems.add(orderItem);
         }  
         insert orderItems;
-        // System.debug(orderItems);
+        System.debug(orderItems);
 
         return user;    
     }
@@ -86,7 +82,7 @@ public with sharing class dataProduct {
 
     @AuraEnabled
     public static Order getOrder(Customer__c Customer) {  
-        // System.debug(Customer.Id);
+        System.debug(Customer.Id);
         Order order = [SELECT Id,Name,Status,EffectiveDate,TotalAmount,CreatedById,
                       Customer__r.Name,Customer__r.Email__c,Customer__r.Phone__c,Customer__r.TotalAmount__c,Customer__r.Address__c,
                       (SELECT TotalPrice,UnitPrice,Quantity,Product__r.Name FROM OrderItems)
@@ -96,13 +92,12 @@ public with sharing class dataProduct {
     }
 
     @AuraEnabled
-    public static string processEmail(String email,String[] ccAddresses, String Subject, String Message){
+    public static string processEmail(String email, String Subject, String Message){
         String sMessage='';
         try{
             Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
             String[] toAddresses = new String[] {email}; 
             mail.setToAddresses(toAddresses);
-            mail.setccAddresses(ccAddresses);
             mail.setSubject(Subject);
             mail.setHtmlBody(Message);
             Messaging.SendEmailResult [] results = Messaging.sendEmail(new Messaging.SingleEmailMessage[] {mail});

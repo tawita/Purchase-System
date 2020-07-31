@@ -19,26 +19,29 @@
     <!-- End Default Content REMOVE THIS -->
    
 
-    <!-- <br>Name :{!user.FirstName__c} </br>
-    <br>Phone :{!user.LastName__c}</br>
-    <br>E-mail :{!user.Phone__c}" </br>
-    <br>Address :{!user.Email__c}</br> -->
+    <br>Name : {!user.FirstName__c} {!user.LastName__c}</br>
+    <br>Phone : {!user.Phone__c}</br>
+    <br>E-mail : {!user.Email__c}</br>
+    <br>Address : {!user.Address__c}</br>
 
 
     <!-- {!dataCustomer.Name} -->
 
     <!-- {!fieldList.Name} -->
-    <!-- <h3>Product List</h3>
+    <h3>Product Total</h3>
     <apex:repeat value="{!Orders}" var="order" id="theRepeat">
 
-        Name :<apex:outputText value="{!order.Product__r.Name}"   style="font-weight: bold;"/>
-        Quantity :
-        <apex:outputText value="{!order.Product__r.Quantity__c}"  style="font-weight: bold;"/> 
+        Name :<apex:outputText value="{!order.Product__r.Name}"   style="font-weight: bold;"/><br/>
         Price :
-        <apex:outputText value="{!order.Product__r.Price__c}" style="font-weight: bold;"/>
-        Total:
-        <apex:outputText value="{!order.Product__r.Price__c*order.Quantity__c}" style="font-weight: bold;"/><br/> -->
+        <apex:outputText value="{!order.Product__r.Price__c}" style="font-weight: bold;"/><br/>
+        <!-- Amount : -->
+        <!-- <apex:outputText value="{!orderQt}"  style="font-weight: bold;"/> <br/> -->
+        <!-- Total:
+        <apex:outputText value="{!order.Product__r.Price__c*orderQt}" style="font-weight: bold;"/><br/><br/> --> 
+        <!-- <apex:outputText value="{!order.Product__r.Price__c*order.Quantity__c}" style="font-weight: bold;"/><br/>  -->
 
-    <!-- </apex:repeat> -->
+    </apex:repeat>
+    Grand Total:
+        <apex:outputText value="{!Total}" style="font-weight: bold;"/><br/>
 </body>  
 </apex:page>

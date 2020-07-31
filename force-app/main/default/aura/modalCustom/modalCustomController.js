@@ -13,8 +13,6 @@
        component.set("v.isModalOpen", false);
     },
 
-
-
    
     onSave: function(component, event, helper) {
     // var newcon = component.get("v.Customer");
@@ -31,21 +29,13 @@
        // console.log(JSON.stringify(component.get("v.newCustomer")));
         var newCustomer = component.get("v.Customer");
         var Products = component.get("v.Products");
-        var newOrderlist = component.get("v.Orderlist");
-
-        //  console.log('newProductList'+JSON.stringify(newOrderlist));
-        // console.log('newCustomer'+JSON.stringify(newCustomer));
+        var total = component.get("v.total");
         
-
-        newCustomer.Name=newCustomer.FirstName;
-        //helper.createCustomer(component, newCustomer,newOrderlist);
-        // console.log('TestOrderlist' + JSON.stringify(newOrderlist));
-
         var action = component.get("c.createOrder");
         action.setParams({
-            "product" : Products,
             "user": newCustomer,
-            "Order" : newOrderlist
+            "products" : Products,
+            "total" : total
         });
    
         // Add callback behavior for when response is received
@@ -53,19 +43,19 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                
-                component.set('v.newCustomer',  response.getReturnValue());
+               component.set('v.Customer',  response.getReturnValue());
                 // console.log('newCustomer.Id:  ',newCustomer.Id__c);
-               console.log( 'gggggg '+JSON.stringify(response.getReturnValue()));
-                console.log( 'SUCCESS');
+               console.log( 'create user '+JSON.stringify(response.getReturnValue()));
+            //    console.log( 'SUCCESS');
                 
                 var evt = $A.get("e.force:navigateToComponent");
                 evt.setParams({
                     componentDef : "c:checkout",
                     componentAttributes: {
-                        Customer : response.getReturnValue(),
                         Products : component.get("v.Products"),
-                        user :  component.get("v.newCustomer"),
-                        total : component.get("v.total")
+                        Customer : response.getReturnValue(),
+                        total : component.get("v.total"),
+                        // Order : response.getReturnValue()
                         // selecttab : false
                     }
                 });
@@ -80,10 +70,6 @@
         $A.enqueueAction(action); 
     }
         
-    },
-
-    onRecordUpdated: function(component, event, helper){
-       
     },
 
  })

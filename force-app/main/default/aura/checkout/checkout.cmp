@@ -1,9 +1,11 @@
-<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+<aura:component controller="dataProduct" implements="flexipage:availableForAllPageTypes" access="global">
     <aura:attribute name="Products" type="Object[]" />
     <aura:attribute name="Customer" type="Customer__c" />
-    <aura:attribute name="newCustomer" type="Customer__c"/>
+    <aura:attribute name="OrderItem" type="OrderItem[]" />
+    <!-- <aura:attribute name="newCustomer" type="Customer__c"/> -->
     <aura:attribute name="total" type="Integer"/>
     <aura:attribute name="amount" type="Integer" default="0"/>
+    <aura:attribute name="Order" type="Order" access="global"/>
     <!-- <aura:attribute name="number" type="List" default="['1','2']"/> -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <div class="slds-grid slds-gutters">
@@ -58,9 +60,9 @@
     </lightning:layoutItem>
 
     <lightning:layoutItem padding="around-small" class="right-align">
-        <lightning:button label=" Cancel " onclick="{!c.cancel}" />
+        <lightning:button variant="destructive" label=" Cancel " onclick="{!c.cancel}" />
         <lightning:button label=" PDF " onclick="{!c.viewPDF}" />
-        <lightning:button variant="brand" label=" Buy " onclick="{!c.buy}" />
+        <lightning:button variant="brand" label=" Buy " onclick="{!c.Send}" />
     </lightning:layoutItem>
 
 

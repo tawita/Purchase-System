@@ -17,37 +17,20 @@
     
     <c:modalCustom isModalOpen="{!v.isModalOpen}" Products="{!v.Products}" total="{!v.total}" />
 
-    <!-- <force:recordData aura:id="service" recordId="{!v.id}"
-    targetFields ="{!v.Custom}"
-    fields="Id,FirstName__c,LastName__c,Phone__c,Email__c,Address__c,Product__c"
-    recordUpdated="{!c.onRecordUpdated}"/> -->
-    <!-- <span>{!v.selecttab}</span> -->
-    <!-- <span>{!v.Custom.FirstName__c}</span> -->
-        <div class="slds-col" >
-    <lightning:card >
-                <div class="center-align">
-                    <img style="height:200px;width:1300px;" src="{!$Resource.header}"/>
-                </div>
-    </lightning:card>
-</div>
+    <div class="slds-col" >
+        <lightning:card >
+            <div class="center-align">
+                <img style="height:200px;width:1300px;" src="{!$Resource.header}"/>
+            </div>
+        </lightning:card>
+    </div>
 
 <div class="slds-grid slds-gutters">
 
-        <!-- <aura:if isTrue="{! (v.Products.length == 0)}"> -->
-
-            <!-- <div class="slds-col slds-size_4-of-4" > -->
-                
-                    <!-- <c:product selected="{!v.selected}"/> -->
-                
-            <!-- </div> -->
-
-            <!-- <aura:set attribute="else"> -->
-                <div class="slds-col slds-size_3-of-4">
-                        <c:product selected="{!v.selected}" />
-                </div>
-            <!-- </aura:set> -->
-
-        <!-- </aura:if> -->
+    <div class="slds-col slds-size_3-of-4">
+        <c:product selected="{!v.selected}" />
+    </div>
+ 
 
     <aura:if isTrue="{! (v.Products.length > 0)}">
         <div class="slds-col slds-size_1-of-4">

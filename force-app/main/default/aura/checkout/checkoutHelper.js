@@ -1,5 +1,5 @@
 ({
-    helperMethod : function() {
-
-    }
+    SendEmail : function(component) {
+        
+ },
 })

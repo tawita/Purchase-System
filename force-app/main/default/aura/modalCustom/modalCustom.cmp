@@ -1,7 +1,5 @@
 <aura:component controller="dataProduct" implements="force:appHostable,force:lightningQuickActionWithoutHeader,flexipage:availableForAllPageTypes" access="global">
-    <!--Boolean attribute to indicate if modal is open or not 
-       default value is false as modal is closed when page is loaded 
-    -->
+
     <aura:attribute name="isModalOpen" type="boolean" />
     <aura:attribute name="Customer" type="Customer__c" default="{sobjectType: 'Customer__c',
     'FirstName__c':'',
@@ -12,19 +10,13 @@
     }"/>
     <!-- <aura:attribute name="Customer" type="Customer__c"/> -->
     <aura:attribute name="total" type="Integer" />
-    <aura:attribute name="newCustomer" type="Customer__c"/>
-    <aura:attribute name="Orderlist" type="Order__c[]" access="global"/>
+    <!-- <aura:attribute name="CustomerId" type="String" /> -->
+    <!-- <aura:attribute name="newCustomer" type="Customer__c"/> -->
+    <aura:attribute name="Order" type="Order[]" access="global"/>
     <!-- <aura:attribute name="Customers" type="Customer__c[]" /> -->
     <aura:attribute name="Products" type="Object[]" access="global"/>
     <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> -->
     <aura:registerEvent name="CustomAdded" type="c:CustomAdded"/>
-
-    <!-- <force:recordData aura:id="service" recordId=""
-                      targetFields="{!v.Customer}"
-                      fields="Id,FirstName__c,LastName__c,Phone__c,Email__c,Address__c,Product__c"
-                      targetRecord="{!v.simpleboatReview}"
-                      targetError="{!v.recordError}"
-                      recordUpdated="{!c.onRecordUpdated}"/> -->
      
     <div class="slds-m-around_xx-large">
         
